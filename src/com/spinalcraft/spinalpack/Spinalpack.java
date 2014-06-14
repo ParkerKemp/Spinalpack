@@ -373,4 +373,23 @@ public class Spinalpack extends JavaPlugin{
 		}
 		return "";
 	}
+	
+	public static String parseColorTags(String original){
+		return original.replace("#black", Spinalpack.code(Co.BLACK))
+				.replace("#darkblue", Spinalpack.code(Co.DARKBLUE))
+				.replace("#darkgreen", Spinalpack.code(Co.DARKGREEN))
+				.replace("#darkaqua", Spinalpack.code(Co.DARKAQUA))
+				.replace("#darkred", Spinalpack.code(Co.DARKRED))
+				.replace("#darkpurple", Spinalpack.code(Co.DARKPURPLE))
+				.replace("#gold", Spinalpack.code(Co.GOLD))
+				.replace("#gray", Spinalpack.code(Co.GRAY))
+				.replace("#darkgray", Spinalpack.code(Co.DARKGRAY))
+				.replace("#blue", Spinalpack.code(Co.BLUE))
+				.replace("#green", Spinalpack.code(Co.GREEN))
+				.replace("#aqua", Spinalpack.code(Co.AQUA))
+				.replace("#red", Spinalpack.code(Co.RED))
+				.replace("#purple", Spinalpack.code(Co.LIGHTPURPLE))
+				.replace("#yellow", Spinalpack.code(Co.YELLOW))
+				.replace("#white", Spinalpack.code(Co.WHITE));
+	}
 }
