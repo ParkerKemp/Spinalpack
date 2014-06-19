@@ -52,14 +52,11 @@ public class Spinalpack extends JavaPlugin{
 	}
 	
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
-		if(cmd.getName().equalsIgnoreCase("spinalpack")){
-			if(args.length > 0){
-				Bukkit.broadcastMessage("Args");
-				if(args[0].equalsIgnoreCase("unpack")){
-					//unpack();
-					return true;
-				}
-			}
+		if(cmd.getName().equalsIgnoreCase("rules")){
+			sender.sendMessage("");
+			sender.sendMessage(Spinalpack.code(Co.GREEN) + "You can view Spinalcraft's rules here: " + Spinalpack.code(Co.BLUE) + "http://www.reddit.com/r/SpinalCraft/wiki/rules");
+			sender.sendMessage("");
+			return true;
 		}
 		return false;
 	}

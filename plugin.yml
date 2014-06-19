@@ -3,8 +3,8 @@ main: com.spinalcraft.spinalpack.Spinalpack
 version: 1.0
 
 commands:
-  spinalpack:
-    description: Access Spinalpack commands
-    usage: Usage - /spinalpack unpack
-    permission: spinalpack.unpack
-    permission-message: No touchy.
+  rules:
+    description: Get information about Spinalcraft's rules
+    usage: Usage - /rules
+    permission: spinalpack.rules
+    permission-message: No!
