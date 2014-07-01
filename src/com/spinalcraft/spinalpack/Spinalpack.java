@@ -58,6 +58,12 @@ public class Spinalpack extends JavaPlugin{
 			sender.sendMessage("");
 			return true;
 		}
+		if(cmd.getName().equalsIgnoreCase("report")){
+			sender.sendMessage("");
+			sender.sendMessage(Spinalpack.code(Co.GREEN) + "Use this link to send a report to the mods: " + Spinalpack.code(Co.BLUE) + "http://www.reddit.com/message/compose?to=%2Fr%2FSpinalCraft");
+			sender.sendMessage("");
+			return true;
+		}
 		return false;
 	}
 	

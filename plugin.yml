@@ -8,3 +8,14 @@ commands:
     usage: Usage - /rules
     permission: spinalpack.rules
     permission-message: No!
+  spinalcraft:
+    description: Get information about Spinalcraft plugins
+    usage: Usage - /spinalcraft
+    permission: spinalpack.spinalcraft
+    permission-message: No!
+  report:
+    description: Report an issue to the mods
+    usage: Usage - /report
+    permission: spinalpack.report
+    permission-message: No!
+    
