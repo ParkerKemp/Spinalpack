@@ -29,7 +29,7 @@ public class Spinalpack extends JavaPlugin{
 	static Connection conn = null;
 	//static Statement stmt = null;
 	
-	ConsoleCommandSender console;
+	static ConsoleCommandSender console;
 	
 	@Override
 	public void onEnable(){
@@ -126,7 +126,7 @@ public class Spinalpack extends JavaPlugin{
 	public static int insertReportedChunk(String username, String world, int x, int z){
 		String query; 
 		
-		query = "SELECT * FROM Chunks WHERE world = '" + world + "' AND x = '" + x + "' AND z = '" + z + "'";
+		query = "SELECT * FROM Chunks WHERE world = '" + world + "' AND x = '" + x + "' AND z = '" + z + "' AND batchNum IS NULL";
 		Statement stmt;
 		try {
 			stmt = conn.createStatement();
@@ -148,6 +148,7 @@ public class Spinalpack extends JavaPlugin{
 			e.printStackTrace();
 			return 2;
 		}
+		console.sendMessage(code(Co.GOLD) + "Chunk coords: (" + x + ", " + z + ")");
 		return 1;
 	}
 	
@@ -372,6 +373,14 @@ public class Spinalpack extends JavaPlugin{
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+		
+		query = "ALTER TABLE Chunks ADD batchNum INT";
+		try {
+			Statement stmt = conn.createStatement();
+			stmt.executeUpdate(query);
+		} catch (SQLException e) {
+			console.sendMessage("Chunks table already has a batchNum column. Moving on...");
 		}
 	}
 	
