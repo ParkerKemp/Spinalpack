@@ -29,7 +29,7 @@ public class Spinalpack extends JavaPlugin{
 	static Connection conn = null;
 	//static Statement stmt = null;
 	
-	ConsoleCommandSender console;
+	static ConsoleCommandSender console;
 	
 	@Override
 	public void onEnable(){
@@ -93,6 +93,63 @@ public class Spinalpack extends JavaPlugin{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public static int deleteReportedChunk(String world, int x, int z){
+		String query;
+		
+		query = "SELECT * FROM Chunks WHERE world = '" + world + "' AND x = '" + x + "' AND z = '" + z + "'";
+		Statement stmt;
+		try {
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			if(!rs.first())
+				return 0;
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			return 2;
+		}
+		
+		query = "DELETE FROM Chunks WHERE world = '" + world + "' AND x = '" + x + "' AND z = '" + z + "'";
+		try {
+			stmt = conn.createStatement();
+			stmt.executeUpdate(query);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return 2;
+		}
+		return 1;
+	}
+	
+	public static int insertReportedChunk(String username, String world, int x, int z){
+		String query; 
+		
+		query = "SELECT * FROM Chunks WHERE world = '" + world + "' AND x = '" + x + "' AND z = '" + z + "' AND batchNum IS NULL";
+		Statement stmt;
+		try {
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			if(rs.first())
+				return 0;
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			return 2;
+		}
+		
+		query = "INSERT INTO Chunks(username, date, world, x, z) values ('" + username + "', '" + System.currentTimeMillis() / 1000 + "', '" + world + "', '" + x + "', '" + z + "')";
+		try {
+			stmt = conn.createStatement();
+			stmt.executeUpdate(query);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return 2;
+		}
+		console.sendMessage(code(Co.GOLD) + "Chunk coords: (" + x + ", " + z + ")");
+		return 1;
 	}
 	
 	public static void insertVoteRecord(String username, String timestamp, String service){
@@ -305,6 +362,26 @@ public class Spinalpack extends JavaPlugin{
 			e.printStackTrace();
 		}
 		return ret;
+	}
+	
+	public static void createChunkTable(){
+		String query;
+		query = "CREATE TABLE IF NOT EXISTS Chunks (ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY, username VARCHAR(31), date VARCHAR(63), world VARCHAR(31), x INT, z INT)";
+		try {
+			Statement stmt = conn.createStatement();
+			stmt.executeUpdate(query);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		query = "ALTER TABLE Chunks ADD batchNum INT";
+		try {
+			Statement stmt = conn.createStatement();
+			stmt.executeUpdate(query);
+		} catch (SQLException e) {
+			console.sendMessage("Chunks table already has a batchNum column. Moving on...");
+		}
 	}
 	
 	public static void createVoteTable(){
