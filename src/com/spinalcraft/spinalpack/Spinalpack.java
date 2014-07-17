@@ -12,6 +12,8 @@ import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.InvalidDescriptionException;
 import org.bukkit.plugin.InvalidPluginException;
 import org.bukkit.plugin.Plugin;
@@ -364,6 +366,24 @@ public class Spinalpack extends JavaPlugin{
 		return ret;
 	}
 	
+	public static void insertPet(Player player, Entity entity){
+		String query;
+		query = "INSERT INTO Pets (currentOwner, since, petType, uuid, originalOwner) VALUES ('"
+		+ player.getName() + "', '"
+		+ System.currentTimeMillis() + "', '"
+		+ entity.getType().toString() + "', '"
+		+ entity.getUniqueId().toString() + "', '"
+		+ player.getName() + "')";
+		
+		try {
+			Statement stmt = conn.createStatement();
+			stmt.executeUpdate(query);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	public static void createChunkTable(){
 		String query;
 		query = "CREATE TABLE IF NOT EXISTS Chunks (ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY, username VARCHAR(31), date VARCHAR(63), world VARCHAR(31), x INT, z INT)";
@@ -388,6 +408,18 @@ public class Spinalpack extends JavaPlugin{
 		String query;
 		try {
 			query = "CREATE TABLE IF NOT EXISTS Votes (ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY, username VARCHAR(31), date VARCHAR(63), service VARCHAR(63))";
+			Statement stmt = conn.createStatement();
+			stmt.executeUpdate(query);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public static void createPetTable(){
+		String query;
+		try {
+			query = "CREATE TABLE IF NOT EXISTS Pets (ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY, currentOwner VARCHAR(31), since BIGINT, petType VARCHAR(31), uuid VARCHAR(16), originalOwner VARCHAR(31))";
 			Statement stmt = conn.createStatement();
 			stmt.executeUpdate(query);
 		} catch (SQLException e) {
