@@ -15,12 +15,9 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
-
 public class Spinalpack extends JavaPlugin{
 	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
 	static final String DB_URL = "jdbc:mysql://localhost";
-	
-	JavaPlugin Slipdisk = null, Spawnalcraft = null, Spinalvote = null;
 	
 	static Connection conn = null;
 	
@@ -384,7 +381,7 @@ public class Spinalpack extends JavaPlugin{
 	public static void createPetTable(){
 		String query;
 		try {
-			query = "CREATE TABLE IF NOT EXISTS Pets (ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY, currentOwner VARCHAR(31), since BIGINT, petType VARCHAR(31), uuid VARCHAR(16), originalOwner VARCHAR(31))";
+			query = "CREATE TABLE IF NOT EXISTS Pets (ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY, currentOwner VARCHAR(31), since BIGINT, petType VARCHAR(31), uuid VARCHAR(36), originalOwner VARCHAR(31))";
 			Statement stmt = conn.createStatement();
 			stmt.executeUpdate(query);
 		} catch (SQLException e) {
