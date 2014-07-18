@@ -29,7 +29,6 @@ public class Spinalpack extends JavaPlugin{
 	JavaPlugin Slipdisk = null, Spawnalcraft = null, Spinalvote = null;
 	
 	static Connection conn = null;
-	//static Statement stmt = null;
 	
 	static ConsoleCommandSender console;
 	
@@ -67,34 +66,6 @@ public class Spinalpack extends JavaPlugin{
 			return true;
 		}
 		return false;
-	}
-	
-	public void unpack(){
-		reload("Spawnalcraft");
-		reload("Spinalvote");
-		reload("Slipdisk");
-	}
-	
-	private void reload(String name){
-		PluginManager manager = Bukkit.getPluginManager();
-		Plugin plugin = manager.getPlugin(name);
-		//JavaPluginLoader loader = Bukkit.getPl;
-		if(plugin != null){
-			manager.disablePlugin(plugin);
-		}
-		
-		try {
-			manager.loadPlugin(new File(System.getProperty("user.dir") + "/plugins/Spinalpack/" + name + ".jar"));
-		} catch (UnknownDependencyException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InvalidPluginException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InvalidDescriptionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 	
 	public static int deleteReportedChunk(String world, int x, int z){
