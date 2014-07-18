@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.UUID;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -326,6 +327,21 @@ public class Spinalpack extends JavaPlugin{
 			e.printStackTrace();
 		}
 		return ret;
+	}
+	
+	public static String petOwner(UUID uuid){
+		String query = "SELECT * FROM Pets WHERE uuid = '" + uuid.toString();
+		try {
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			if(rs.first())
+				return rs.getString("currentOwner");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 	
 	public static void insertPet(Player player, Entity entity){
