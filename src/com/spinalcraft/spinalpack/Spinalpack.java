@@ -247,17 +247,21 @@ public class Spinalpack extends JavaPlugin{
 	}
 
 	public static boolean deleteSlip(String username){
-		String query;
-		query = "DELETE FROM Slips WHERE username = '" + username + "'";
-		try {
-			Statement stmt = conn.createStatement();
-			stmt.executeUpdate(query);
-		} catch (SQLException e) {
+		boolean ret = true;
+		ret &= unlinkSign(username, 1);
+			
+		ret	&= unlinkSign(username, 2);
+		//String query;
+		//query = "DELETE FROM Slips WHERE username = '" + username + "'";
+		//try {
+		//	Statement stmt = conn.createStatement();
+		//	stmt.executeUpdate(query);
+		//} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return false;
-		}
-		return true;
+		//	e.printStackTrace();
+		//	return false;
+		//}
+		return ret;
 	}
 	
 	public static boolean unlinkSign(String username, int slipno){
