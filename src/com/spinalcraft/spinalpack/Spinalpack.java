@@ -334,7 +334,7 @@ public class Spinalpack extends JavaPlugin{
 	}
 	
 	public static String petOwner(UUID uuid){
-		String query = "SELECT * FROM Pets WHERE uuid = '" + uuid.toString();
+		String query = "SELECT * FROM Pets WHERE uuid = '" + uuid.toString() + "'";
 		try {
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
