@@ -1,10 +1,18 @@
 package com.spinalcraft.spinalpack;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
@@ -124,6 +132,117 @@ public class Spinalpack extends JavaPlugin{
 			Statement stmt = conn.createStatement();
 			stmt.executeUpdate(query);
 		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public static boolean checkUniqueTraffic(String username){
+		if(!checkTrafficDate()){
+			resetUniqueTraffic();
+			insertUniqueTraffic(username);
+			return true;
+		}
+		
+		String query;
+		query = "SELECT * FROM TempUniques WHERE username = " + username;
+		try {
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			if(rs.first())
+				return false;
+			
+			insertUniqueTraffic(username);
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	private static void insertUniqueTraffic(String username){
+		String query;
+		try {
+			Statement stmt = conn.createStatement();
+			query = "INSERT INTO TempUniques (username) VALUES (" + username + ")";
+			stmt.executeUpdate(query);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	private static void resetUniqueTraffic(){
+		String query;
+		query = "DELETE FROM TempUniques";
+		try {
+			Statement stmt = conn.createStatement();
+			stmt.executeUpdate(query);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public static void updateTrafficRecord(String date, boolean unique){
+		String query;
+		query = "INSERT INTO Traffic (date, total, uniques)"
+				+ "VALUES ('" + date + "', 0, " + (unique ? 1 : 0) + ")"
+				+ "ON DUPLICATE KEY UPDATE"
+				+ "total=total+1" + (unique ? ", unique=unique+1" : "");
+		try {
+			Statement stmt = conn.createStatement();
+			stmt.executeUpdate(query);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public static void createTrafficTables(){
+		String query;
+		try{
+			query = "CREATE TABLE IF NOT EXISTS Traffic"
+					+ "(date VARCHAR(10) PRIMARY KEY, total INT, uniques INT)";
+			Statement stmt = conn.createStatement();
+			stmt.executeUpdate(query);
+			
+			query = "CREATE TABLE IF NOT EXISTS TempUniques"
+					+ "(username VARCHAR(32) PRIMARY KEY)";
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+	}
+	
+	private static boolean checkTrafficDate(){
+		String correctDate = new SimpleDateFormat("MM/dd/yyyy").format(Calendar.getInstance());
+		try {
+			BufferedReader reader = new BufferedReader(new FileReader(System.getProperty("user.dir") + "/plugins/Spinalpack/trafficDate.txt"));
+			String date = reader.readLine();
+			reader.close();
+			if(date.equals(correctDate))
+				return true;
+			else{
+				writeTrafficDate(correctDate);
+				return false;
+			}
+		} catch (FileNotFoundException e){
+			writeTrafficDate(correctDate);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	private static void writeTrafficDate(String correctDate){
+		PrintWriter writer;
+		try {
+			writer = new PrintWriter(new FileWriter(System.getProperty("user.dir") + "/plugins/Spinalpack/trafficDate.txt"));
+			writer.println(correctDate);
+			writer.close();
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
