@@ -531,14 +531,15 @@ public class Spinalpack extends JavaPlugin{
 	
 	private void createDatabase(){
 		String query;
+		String dbName = getDbName();
 		try {
 			conn = DriverManager.getConnection(DB_URL, "root", "password");
 			Statement stmt = conn.createStatement();
 			stmt = conn.createStatement();
 			
-			stmt.executeUpdate("CREATE DATABASE IF NOT EXISTS Spinalcraft");
+			stmt.executeUpdate("CREATE DATABASE IF NOT EXISTS " + dbName);
 			
-			query = "USE Spinalcraft";
+			query = "USE " + dbName;
 			stmt.executeQuery(query);
 			
 			console.sendMessage(code(Co.GREEN) + "Spinalpack loaded database!");
@@ -547,6 +548,18 @@ public class Spinalpack extends JavaPlugin{
 			e.printStackTrace();
 			console.sendMessage(code(Co.DARKRED) + "Spinalpack failed to load database!");
 		}
+	}
+	
+	private String getDbName(){
+		try {
+			BufferedReader reader = new BufferedReader(new FileReader(System.getProperty("user.dir") + "/plugins/Spinalpack/db.txt"));
+			reader.close();
+			return reader.readLine();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 	public static String code(Co color){
