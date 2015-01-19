@@ -251,8 +251,10 @@ public class Spinalpack extends JavaPlugin{
 	public static void createSlipTable(){
 		String query;
 		try {
-			query = "CREATE TABLE IF NOT EXISTS Slips (username VARCHAR(31) PRIMARY KEY, timeCreated INT, cooldown INT, w1 VARCHAR(31), sx1 FLOAT, sy1 FLOAT, sz1 FLOAT, x1 FLOAT, y1 FLOAT, z1 FLOAT, pitch1 FLOAT, yaw1 FLOAT, w2 VARCHAR(31), sx2 FLOAT, sy2 FLOAT, sz2 FLOAT, x2 FLOAT, y2 FLOAT, z2 FLOAT, pitch2 FLOAT, yaw2 FLOAT)";
+			query = "CREATE TABLE IF NOT EXISTS Slips (uuid VARCHAR(36) PRIMARY KEY, username VARCHAR(31), timeCreated INT, cooldown INT, w1 VARCHAR(31), sx1 FLOAT, sy1 FLOAT, sz1 FLOAT, x1 FLOAT, y1 FLOAT, z1 FLOAT, pitch1 FLOAT, yaw1 FLOAT, w2 VARCHAR(31), sx2 FLOAT, sy2 FLOAT, sz2 FLOAT, x2 FLOAT, y2 FLOAT, z2 FLOAT, pitch2 FLOAT, yaw2 FLOAT)";
 			Statement stmt = conn.createStatement();
+			stmt.executeUpdate(query);
+			query = "ALTER TABLE Slips DROP PRIMARY KEY, ADD uuid VARCHAR(36) PRIMARY KEY";
 			stmt.executeUpdate(query);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -260,10 +262,12 @@ public class Spinalpack extends JavaPlugin{
 		}
 	}
 	
-	public static void insertSlipNode(String username, Location sLocation, Location pLocation, int slipno){
+	public static void insertSlipNode(String uuid, String username, Location sLocation, Location pLocation, int slipno){
 		String query;
 		if(slipno == 1)
-			query = "INSERT INTO Slips (username, timeCreated, cooldown, w1, sx1, sy1, sz1, x1, y1, z1, pitch1, yaw1) VALUES ('"
+			query = "INSERT INTO Slips (uuid, username, timeCreated, cooldown, w1, sx1, sy1, sz1, x1, y1, z1, pitch1, yaw1) VALUES ('"
+				+ uuid
+				+ "', '"
 				+ username
 				+ "', '"
 				+ System.currentTimeMillis() / 1000
@@ -311,6 +315,8 @@ public class Spinalpack extends JavaPlugin{
 				+ "'";
 		else
 			query = "INSERT INTO Slips (username, timeCreated, cooldown, w2, sx2, sy2, sz2, x2, y2, z2, pitch2, yaw2) VALUES ('"
+				+ uuid
+				+ "', '"
 				+ username
 				+ "', '"
 				+ System.currentTimeMillis() / 1000
@@ -355,7 +361,7 @@ public class Spinalpack extends JavaPlugin{
 				+ pLocation.getPitch()
 				+ "', yaw2 = '"
 				+ pLocation.getYaw()
-				+ "'";		
+				+ "'";
 		try {
 			Statement stmt = conn.createStatement();
 			stmt.executeUpdate(query);
@@ -401,11 +407,20 @@ public class Spinalpack extends JavaPlugin{
 		return true;
 	}
 	
-	public static Slip slip(String username){
+	public static Slip slipFromUsername(String username){
+		String query = "SELECT * FROM Slips WHERE username = '" + username + "'";
+		return getSlip(query);
+	}
+	
+	public static Slip slipFromUuid(String uuid){
+		String query = "SELECT * FROM Slips WHERE uuid = '" + uuid + "'";
+		return getSlip(query);
+	}
+	
+	private static Slip getSlip(String query){
 		Slip ret = new Slip();
 		float x, y, z, pitch, yaw;
 		String world;
-		String query = "SELECT * FROM Slips WHERE username = '" + username + "'";
 		try {
 			Statement stmt = conn.createStatement();
 			stmt.executeQuery(query);
@@ -430,7 +445,7 @@ public class Spinalpack extends JavaPlugin{
 				yaw = res.getFloat("yaw1");
 				ret.slip1 = new Location(Bukkit.getWorld(world), x, y, z, yaw, pitch);
 			}
-				
+			
 			world = res.getString("w2");
 			if(world != null){
 				x = res.getFloat("sx2");
@@ -448,6 +463,7 @@ public class Spinalpack extends JavaPlugin{
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return null;
 		}
 		return ret;
 	}
@@ -553,8 +569,9 @@ public class Spinalpack extends JavaPlugin{
 	private String getDbName(){
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(System.getProperty("user.dir") + "/plugins/Spinalpack/db.txt"));
+			String ret = reader.readLine();
 			reader.close();
-			return reader.readLine();
+			return ret;
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
