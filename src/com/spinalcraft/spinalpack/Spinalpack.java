@@ -254,8 +254,6 @@ public class Spinalpack extends JavaPlugin{
 			query = "CREATE TABLE IF NOT EXISTS Slips (uuid VARCHAR(36) PRIMARY KEY, username VARCHAR(31), timeCreated INT, cooldown INT, w1 VARCHAR(31), sx1 FLOAT, sy1 FLOAT, sz1 FLOAT, x1 FLOAT, y1 FLOAT, z1 FLOAT, pitch1 FLOAT, yaw1 FLOAT, w2 VARCHAR(31), sx2 FLOAT, sy2 FLOAT, sz2 FLOAT, x2 FLOAT, y2 FLOAT, z2 FLOAT, pitch2 FLOAT, yaw2 FLOAT)";
 			Statement stmt = conn.createStatement();
 			stmt.executeUpdate(query);
-			query = "ALTER TABLE Slips DROP PRIMARY KEY, ADD uuid VARCHAR(36) PRIMARY KEY";
-			stmt.executeUpdate(query);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -314,7 +312,7 @@ public class Spinalpack extends JavaPlugin{
 				+ pLocation.getYaw()
 				+ "'";
 		else
-			query = "INSERT INTO Slips (username, timeCreated, cooldown, w2, sx2, sy2, sz2, x2, y2, z2, pitch2, yaw2) VALUES ('"
+			query = "INSERT INTO Slips (uuid, username, timeCreated, cooldown, w2, sx2, sy2, sz2, x2, y2, z2, pitch2, yaw2) VALUES ('"
 				+ uuid
 				+ "', '"
 				+ username
@@ -551,7 +549,6 @@ public class Spinalpack extends JavaPlugin{
 		try {
 			conn = DriverManager.getConnection(DB_URL, "root", "password");
 			Statement stmt = conn.createStatement();
-			stmt = conn.createStatement();
 			
 			stmt.executeUpdate("CREATE DATABASE IF NOT EXISTS " + dbName);
 			
