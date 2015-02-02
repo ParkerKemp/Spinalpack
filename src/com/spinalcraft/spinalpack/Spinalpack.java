@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -66,6 +67,34 @@ public class Spinalpack extends JavaPlugin{
 			return true;
 		}
 		return false;
+	}
+	
+	public static ResultSet query(String query){
+		Statement stmt;
+		try {
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			return rs;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public static boolean update(String query){
+		Statement stmt;
+		try {
+			stmt = conn.createStatement();
+			stmt.executeUpdate(query);
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	public static PreparedStatement prepareStatement(String query) throws SQLException{
+		return conn.prepareStatement(query);
 	}
 	
 	public static int deleteReportedChunk(String world, int x, int z){
@@ -435,7 +464,7 @@ public class Spinalpack extends JavaPlugin{
 				y = res.getFloat("sy1");
 				z = res.getFloat("sz1");
 				ret.sign1 = new Location(Bukkit.getWorld(world), x, y, z);
-			
+				
 				x = res.getFloat("x1");
 				y = res.getFloat("y1");
 				z = res.getFloat("z1");
