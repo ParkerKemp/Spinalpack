@@ -152,18 +152,6 @@ public class Spinalpack extends JavaPlugin{
 		return 1;
 	}
 	
-	public static void insertVoteRecord(String username, String timestamp, String service){
-		String query;
-		query = "INSERT INTO Votes(username, date, service) values('" + username + "', '" + timestamp + "', '" + service + "')";
-		try {
-			Statement stmt = conn.createStatement();
-			stmt.executeUpdate(query);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
 	public static boolean checkUniqueTraffic(String username){
 		if(!checkTrafficDate()){
 			resetUniqueTraffic();
@@ -325,18 +313,6 @@ public class Spinalpack extends JavaPlugin{
 			stmt.executeUpdate(query);
 		} catch (SQLException e) {
 			console.sendMessage("Chunks table already has a batchNum column. Moving on...");
-		}
-	}
-	
-	public static void createVoteTable(){
-		String query;
-		try {
-			query = "CREATE TABLE IF NOT EXISTS Votes (ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY, username VARCHAR(31), date VARCHAR(63), service VARCHAR(63))";
-			Statement stmt = conn.createStatement();
-			stmt.executeUpdate(query);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 	}
 	
