@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="build" name="Build Jar for Spinalpack">
+    <target name="build">
+        <mkdir dir="bin"/>
+        <javac includeantruntime="false" destdir="bin">
+			<src path="src"/>
+			<classpath id="classpath">
+				<pathelement path="${classpath}" />
+				<fileset dir="lib"/>
+			</classpath>
+		</javac>
+    </target>
+	<target name="jar">
+        <jar destfile="Spinalpack.jar" filesetmanifest="mergewithoutmain">
+            <fileset dir="bin"/>
+			<fileset file="plugin.yml"/>
+			<zipfileset excludes="META-INF/*.SF" src="lib/junixsocket-1.3.jar"/>
+        </jar>
+    </target>
+	<target name="clean">
+	<delete dir="bin"/>
+	</target>
+</project>
