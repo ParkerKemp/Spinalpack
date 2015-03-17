@@ -6,11 +6,17 @@ import java.io.InputStream;
 import java.net.Socket;
 
 import org.bukkit.Bukkit;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.newsclub.net.unix.AFUNIXServerSocket;
 import org.newsclub.net.unix.AFUNIXSocketAddress;
 
 public class CommandSocketListener implements Runnable{
 	private Socket sock;
+	private Spinalpack plugin;
+	
+	public CommandSocketListener(Spinalpack plugin){
+		this.plugin = plugin;
+	}
 	
 	@Override
 	public void run(){
@@ -32,8 +38,15 @@ public class CommandSocketListener implements Runnable{
 				byte[] buffer = new byte[128];
 				int read;
 				while((read = is.read(buffer)) != -1){
-					String input = new String(buffer, 0, read);
-					Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), input);
+					final String input = new String(buffer, 0, read);
+					
+					new BukkitRunnable(){
+						@Override
+						public void run(){
+							Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), input);
+							
+						}
+					}.runTask(plugin);
 				}
 			} catch (IOException e) {
 				e.printStackTrace();

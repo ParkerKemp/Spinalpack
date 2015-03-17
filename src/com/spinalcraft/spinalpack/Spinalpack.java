@@ -34,7 +34,7 @@ public class Spinalpack extends JavaPlugin{
 		
 		console.sendMessage(code(Co.BLUE) + "Spinalpack online!");
 		createDatabase();
-		new Thread(new CommandSocketListener()).start();
+		new Thread(new CommandSocketListener(this)).start();
 	}
 	
 	@Override
