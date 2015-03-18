@@ -44,7 +44,6 @@ public class CommandSocketListener implements Runnable{
 						@Override
 						public void run(){
 							Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), input);
-							
 						}
 					}.runTask(plugin);
 				}

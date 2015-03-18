@@ -12,6 +12,7 @@ import java.sql.Statement;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
@@ -58,6 +59,18 @@ public class Spinalpack extends JavaPlugin{
 			sender.sendMessage("");
 			sender.sendMessage(Spinalpack.code(Co.GREEN) + "Use this link to send a report to the mods: " + Spinalpack.code(Co.BLUE) + "http://www.reddit.com/message/compose?to=%2Fr%2FSpinalCraft");
 			sender.sendMessage("");
+			return true;
+		}
+		if(cmd.getName().equalsIgnoreCase("setdonor")){
+			if(args.length == 0){
+				return false;
+			}
+			if(Bukkit.getPlayer(args[0]) == null){
+				sender.sendMessage(ChatColor.RED + "Player couldn't be found!");
+				return true;
+			}
+			Bukkit.getServer().dispatchCommand(sender, "pex user " + args[0] + " group add trusted");
+			Bukkit.getServer().dispatchCommand(sender, "elevate " + args[0] + " donor");
 			return true;
 		}
 		return false;
