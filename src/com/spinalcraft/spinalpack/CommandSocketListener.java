@@ -21,7 +21,7 @@ public class CommandSocketListener implements Runnable{
 	@Override
 	public void run(){
 		File socketFile = new File(System.getProperty("user.dir") + "/plugins/Spinalpack/sockets/command.sock");
-		
+		socketFile.delete();
 		AFUNIXServerSocket server;
 		try {
 			server = AFUNIXServerSocket.newInstance();
