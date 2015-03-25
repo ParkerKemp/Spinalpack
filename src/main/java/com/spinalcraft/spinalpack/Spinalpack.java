@@ -1,4 +1,4 @@
-package com.spinalcraft.spinalpack;
+package main.java.com.spinalcraft.spinalpack;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -90,8 +90,12 @@ public class Spinalpack extends JavaPlugin{
 	
 	public static boolean update(String query){
 		Statement stmt;
+		if(conn == null)
+			System.out.println("Conn is null!");
 		try {
 			stmt = conn.createStatement();
+			if(stmt == null)
+				System.out.println("Stmt is null!");
 			stmt.executeUpdate(query);
 			return true;
 		} catch (SQLException e) {

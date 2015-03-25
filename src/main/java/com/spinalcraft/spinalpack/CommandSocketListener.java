@@ -1,4 +1,4 @@
-package com.spinalcraft.spinalpack;
+package main.java.com.spinalcraft.spinalpack;
 
 import java.io.File;
 import java.io.IOException;
