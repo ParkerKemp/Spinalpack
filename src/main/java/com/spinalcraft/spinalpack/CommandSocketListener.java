@@ -10,6 +10,20 @@ import org.bukkit.scheduler.BukkitRunnable;
 import org.newsclub.net.unix.AFUNIXServerSocket;
 import org.newsclub.net.unix.AFUNIXSocketAddress;
 
+class CommandExecutor extends BukkitRunnable{
+	
+	private String input;
+	
+	public CommandExecutor(String input){
+		this.input = input;
+	}
+	
+	@Override
+	public void run(){
+		Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), input);
+	}
+}
+
 public class CommandSocketListener implements Runnable{
 	private Socket sock;
 	private Spinalpack plugin;
@@ -40,12 +54,7 @@ public class CommandSocketListener implements Runnable{
 				while((read = is.read(buffer)) != -1){
 					final String input = new String(buffer, 0, read);
 					
-					new BukkitRunnable(){
-						@Override
-						public void run(){
-							Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), input);
-						}
-					}.runTask(plugin);
+					new CommandExecutor(input).runTask(plugin);
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
