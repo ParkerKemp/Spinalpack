@@ -48,6 +48,7 @@ public class Spinalpack extends JavaPlugin{
 		}
 	}
 	
+	@SuppressWarnings("deprecation")
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
 		if(cmd.getName().equalsIgnoreCase("rules")){
 			sender.sendMessage("");
