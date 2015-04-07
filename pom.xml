@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 	<groupId>com.spinalcraft</groupId>
 	<artifactId>Spinalpack</artifactId>
-	<version>1.0</version>
+	<version>1.0.1</version>
 	<name>Spinalpack</name>
 	
 	<properties>
@@ -66,5 +66,22 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<extensions>
+			<extension>
+				<groupId>org.apache.maven.wagon</groupId>
+				<artifactId>wagon-ssh</artifactId>
+				<version>1.0</version>
+			</extension>
+		</extensions>
 	</build>
+
+	<distributionManagement>
+		<repository>
+			<uniqueVersion>false</uniqueVersion>
+			<id>spinalcraft</id>
+			<name>Spinalcraft Repository</name>
+			<url>sftp://maven.spinalcraft.com/var/www/maven</url>
+			<layout>default</layout>
+		</repository>
+	</distributionManagement>
 </project>
