@@ -4,7 +4,7 @@
   <groupId>com.spinalcraft</groupId>
   <artifactId>Spinalpack</artifactId>
   <name>Spinalpack</name>
-  <version>1.0.1</version>
+  <version>1.0</version>
   <url>http://github.com/ParkerKemp/Spinalpack</url>
   <build>
     <extensions>
@@ -50,6 +50,10 @@
     <repository>
       <id>spigot-repo</id>
       <url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
+    </repository>
+    <repository>
+      <id>spinalcraft-repo</id>
+      <url>http://maven.spinalcraft.com</url>
     </repository>
   </repositories>
   <dependencies>
