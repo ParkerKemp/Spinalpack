@@ -48,7 +48,6 @@ public class Spinalpack extends JavaPlugin{
 		}
 	}
 	
-	@SuppressWarnings("deprecation")
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
 		if(cmd.getName().equalsIgnoreCase("rules")){
 			sender.sendMessage("");
@@ -65,10 +64,6 @@ public class Spinalpack extends JavaPlugin{
 		if(cmd.getName().equalsIgnoreCase("setdonor")){
 			if(args.length == 0){
 				return false;
-			}
-			if(Bukkit.getPlayer(args[0]) == null){
-				sender.sendMessage(ChatColor.RED + "Player couldn't be found!");
-				return true;
 			}
 			Bukkit.getServer().dispatchCommand(sender, "pex user " + args[0] + " group add trusted");
 			Bukkit.getServer().dispatchCommand(sender, "elevate " + args[0] + " donor");
