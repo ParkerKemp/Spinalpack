@@ -1,3 +1,3 @@
-package main.java.com.spinalcraft.spinalpack;
+package com.spinalcraft.spinalpack;
 
 public enum Co{BLACK, DARKBLUE, DARKGREEN, DARKAQUA, DARKRED, DARKPURPLE, GOLD, GRAY, DARKGRAY, BLUE, GREEN, AQUA, RED, LIGHTPURPLE, YELLOW, WHITE};
