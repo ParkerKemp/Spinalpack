@@ -68,6 +68,12 @@ public class Spinalpack extends JavaPlugin{
 			Bukkit.getServer().dispatchCommand(sender, "elevate " + args[0] + " donor");
 			return true;
 		}
+    if(cmd.getName().equalsIgnoreCase("donate")){
+      sender.sendMessage(ChatColor.GREEN + "Donating money helps Spinalcraft keep running! Donate at least $5 and you will get a green name in chat, as well as a third slip sign!");
+      sender.sendMessage(ChatColor.GREEN + "Use this link to make a donation via PayPal (remember to add your IGN as a note so we know who you are!):");
+      sender.sendMessage(ChatColor.BLUE + "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DU7SSYS25BSCA");
+      return true;
+    }
 		return false;
 	}
 	

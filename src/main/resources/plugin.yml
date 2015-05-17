@@ -18,3 +18,8 @@ commands:
     usage: Usage - /setdonor <username>
     permission: spinalpack.setdonor
     permission-message: No!
+  donate:
+    description: Make a donation to Spinalcraft
+    usage: Usage - /donate
+    permission: spinalpack.donate
+    permission-message: No!
