@@ -1,5 +1,5 @@
 name: Spinalpack
-main: main.java.com.spinalcraft.spinalpack.Spinalpack
+main: com.spinalcraft.spinalpack.Spinalpack
 version: 1.0
 
 commands:

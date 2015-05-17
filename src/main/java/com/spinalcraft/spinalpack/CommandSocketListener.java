@@ -5,28 +5,14 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.Socket;
 
-import org.bukkit.Bukkit;
-import org.bukkit.scheduler.BukkitRunnable;
 import org.newsclub.net.unix.AFUNIXServerSocket;
 import org.newsclub.net.unix.AFUNIXSocketAddress;
-
-class CommandExecutor extends BukkitRunnable{
-	
-	private String input;
-	
-	public CommandExecutor(String input){
-		this.input = input;
-	}
-	
-	@Override
-	public void run(){
-		Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), input);
-	}
-}
 
 public class CommandSocketListener implements Runnable{
 	private Socket sock;
 	private Spinalpack plugin;
+	
+	
 	
 	public CommandSocketListener(Spinalpack plugin){
 		this.plugin = plugin;
