@@ -1,18 +1,17 @@
-package com.spinalcraft.spinalpack;
+package com.spinalcraft.spinalpack.command;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.Socket;
 
 import org.newsclub.net.unix.AFUNIXServerSocket;
 import org.newsclub.net.unix.AFUNIXSocketAddress;
 
+import com.spinalcraft.spinalpack.Spinalpack;
+
 public class CommandSocketListener implements Runnable{
-	private Socket sock;
+	private Socket socket;
 	private Spinalpack plugin;
-	
-	
 	
 	public CommandSocketListener(Spinalpack plugin){
 		this.plugin = plugin;
@@ -33,15 +32,8 @@ public class CommandSocketListener implements Runnable{
 		
 		while (!Thread.interrupted()) {
 			try {
-				sock = server.accept();
-				InputStream is = sock.getInputStream();
-				byte[] buffer = new byte[128];
-				int read;
-				while((read = is.read(buffer)) != -1){
-					final String input = new String(buffer, 0, read);
-					
-					new CommandExecutor(input).runTask(plugin);
-				}
+				socket = server.accept();
+				new Thread(new CommandClientHandler(socket, plugin)).start();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

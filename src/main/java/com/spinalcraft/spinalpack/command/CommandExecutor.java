@@ -1,9 +1,9 @@
-package com.spinalcraft.spinalpack;
+package com.spinalcraft.spinalpack.command;
 
 import org.bukkit.Bukkit;
 import org.bukkit.scheduler.BukkitRunnable;
 
-class CommandExecutor extends BukkitRunnable{
+public class CommandExecutor extends BukkitRunnable{
 	
 	private String input;
 	

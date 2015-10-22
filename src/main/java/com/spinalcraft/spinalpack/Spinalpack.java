@@ -20,6 +20,8 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import com.spinalcraft.spinalpack.command.CommandSocketListener;
+
 public class Spinalpack extends JavaPlugin{
 	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
 	static final String DB_URL = "jdbc:mysql://localhost";
@@ -38,7 +40,7 @@ public class Spinalpack extends JavaPlugin{
 		new Thread(new CommandSocketListener(this)).start();
 		
 		//Load CommandExecutor preemptively, so it can still be used after overwriting .jar file
-		Bukkit.getServicesManager().load(com.spinalcraft.spinalpack.CommandExecutor.class);
+		Bukkit.getServicesManager().load(com.spinalcraft.spinalpack.command.CommandExecutor.class);
 	}
 	
 	@Override
