@@ -82,7 +82,7 @@ public class AppInfo {
 				return null;
 			info.uuid = uuid;
 			
-			if(!info.loadByUuid(uuid.toString()))
+			if(!info.loadByUuid(uuid.toString().replace("-", "")))
 				return null;
 			
 			return info;			
