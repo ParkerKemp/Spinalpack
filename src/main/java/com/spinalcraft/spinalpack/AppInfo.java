@@ -30,9 +30,9 @@ public class AppInfo {
 		sender.sendMessage(ChatColor.GOLD + "Username: " + ChatColor.GREEN + username);
 		sender.sendMessage(ChatColor.GOLD + "Joined " + ChatColor.BLUE + timestamp);
 		sender.sendMessage(ChatColor.GOLD + "Hailing from " + ChatColor.GREEN + country);
-		sender.sendMessage(ChatColor.GOLD + "Approx. age: " + (currentYear - birthYear));
-		sender.sendMessage(ChatColor.GOLD + "Heard of Spinalcraft from " + heardFrom());
-		sender.sendMessage(ChatColor.GOLD + "Additional info: " + comment);
+		sender.sendMessage(ChatColor.GOLD + "Approx. age: " + ChatColor.GREEN + (currentYear - birthYear));
+		sender.sendMessage(ChatColor.GOLD + "Heard of Spinalcraft from " + ChatColor.GREEN + heardFrom());
+		sender.sendMessage(ChatColor.GOLD + "Additional info: " + ChatColor.WHITE + comment);
 	}
 	
 	private String heardFrom(){
