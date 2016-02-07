@@ -1,6 +1,6 @@
 name: Spinalpack
 main: com.spinalcraft.spinalpack.Spinalpack
-version: 1.0
+version: 1.0.1
 
 commands:
   rules:
@@ -22,4 +22,9 @@ commands:
     description: Make a donation to Spinalcraft
     usage: Usage - /donate
     permission: spinalpack.donate
+    permission-message: No!
+  data:
+    description: Retrieve registration data for <player>
+    usage: Usage - /data <player>
+    permission: spinalpack.data
     permission-message: No!

@@ -75,10 +75,22 @@ public class Spinalpack extends JavaPlugin{
 			return true;
 		}
 	    if(cmd.getName().equalsIgnoreCase("donate")){
-	      sender.sendMessage(ChatColor.GREEN + "Donating money helps Spinalcraft keep running! Donate at least $5 and you will get a green name in chat, as well as a third slip sign!");
-	      sender.sendMessage(ChatColor.GREEN + "Use this link to make a donation via PayPal (remember to add your IGN as a note so we know who you are!):");
-	      sender.sendMessage(ChatColor.BLUE + "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DU7SSYS25BSCA");
-	      return true;
+	    	sender.sendMessage(ChatColor.GREEN + "Donating money helps Spinalcraft keep running! Donate at least $5 and you will get a green name in chat, as well as a third slip sign!");
+	    	sender.sendMessage(ChatColor.GREEN + "Use this link to make a donation via PayPal (remember to add your IGN as a note so we know who you are!):");
+	    	sender.sendMessage(ChatColor.BLUE + "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DU7SSYS25BSCA");
+	    	return true;
+	    }
+	    if(cmd.getName().equalsIgnoreCase("data")){
+	    	if(args.length == 0)
+	    		return false;
+	    	AppInfo info = AppInfo.fromUsername(args[0]);
+	    	if(info == null){
+	    		sender.sendMessage(ChatColor.RED + "No data found for " + args[0] + "!");
+	    		return true;
+	    	}
+	    	
+	    	info.reportTo(sender);
+	    	return true;
 	    }
 		return false;
 	}
