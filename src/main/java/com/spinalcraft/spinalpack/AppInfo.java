@@ -42,7 +42,7 @@ public class AppInfo {
 			return "Planet Minecraft";
 		else if(heard.equals("reddit"))
 			return "Reddit";
-		else if(heard.equals("player"))
+		else if(heard.equals("players"))
 			return referrerList();
 		else
 			return "(Unspecified)";
