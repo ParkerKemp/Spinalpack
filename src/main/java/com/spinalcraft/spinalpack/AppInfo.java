@@ -52,7 +52,7 @@ public class AppInfo {
 		String query = "SELECT * FROM Manager.referredPlayers WHERE player = ?";
 		try {
 			PreparedStatement stmt = Spinalpack.prepareStatement(query);
-			stmt.setString(1, uuid.toString());
+			stmt.setString(1, uuid.toString().replace("-", ""));
 			
 			ResultSet rs = stmt.executeQuery();
 			
