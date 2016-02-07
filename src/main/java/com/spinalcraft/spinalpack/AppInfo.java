@@ -58,7 +58,7 @@ public class AppInfo {
 			
 			ArrayList<String> usernames = new ArrayList<String>();
 			while(rs.next()){
-				UHistory hist = UsernameHistory.getHistoryFromUuid(UUID.fromString(rs.getString("referrer")));
+				UHistory hist = UsernameHistory.getHistoryFromUuid(UUID.fromString(dashedUuid(rs.getString("referrer"))));
 				if(hist == null)
 					continue;
 				usernames.add(hist.getOldUsernames()[hist.getOldUsernames().length - 1].getName());
@@ -123,5 +123,22 @@ public class AppInfo {
 	    }
 	    sb.append(data[data.length - 1].trim());
 	    return sb.toString();
+	}
+	
+
+	public static String dashedUuid(String uuid) {
+		StringBuffer sb = new StringBuffer(uuid);
+		sb.insert(8, "-");
+		 
+		sb = new StringBuffer(sb.toString());
+		sb.insert(13, "-");
+		 
+		sb = new StringBuffer(sb.toString());
+		sb.insert(18, "-");
+		 
+		sb = new StringBuffer(sb.toString());
+		sb.insert(23, "-");
+		 
+		return sb.toString();
 	}
 }
