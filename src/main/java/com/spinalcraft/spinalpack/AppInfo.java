@@ -107,7 +107,7 @@ public class AppInfo {
 		timestamp = rs.getString("timestamp");
 		birthYear = rs.getInt("year");
 		heard = rs.getString("heard");
-		comment = rs.getString("comment");
+		comment = rs.getString("comment") != null ? rs.getString("comment") : "(none)";
 		
 		return true;
 	}
