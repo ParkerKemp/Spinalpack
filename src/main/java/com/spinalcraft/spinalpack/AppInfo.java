@@ -76,19 +76,23 @@ public class AppInfo {
 	
 	public static AppInfo fromUsername(String username){
 		AppInfo info = new AppInfo();
+		info.username = username;
 		try {
-			UUID uuid = UUIDFetcher.getUUIDOf(username);
+			
+			UHistory hist = UsernameHistory.getHistoryFromUsername(username);
+//			UUID uuid = UUIDFetcher.getUUIDOf(username);
+			UUID uuid = hist.getUuid();
 			if(uuid == null)
 				return null;
 			info.uuid = uuid;
+			info.username = hist.getOldUsernames()[hist.getOldUsernames().length - 1].getName();
 			
 			if(!info.loadByUuid(uuid.toString().replace("-", "")))
 				return null;
 			
-			return info;			
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
+			return info;
+		}
+		catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return null;
@@ -102,7 +106,7 @@ public class AppInfo {
 		if(!rs.first())
 			return false;
 		
-		username = rs.getString("username");
+//		username = rs.getString("username"); //Username may be outdated at time of retrieval. Do I even need this field?
 		country = rs.getString("country");
 		timestamp = rs.getString("timestamp");
 		birthYear = rs.getInt("year");
