@@ -66,7 +66,7 @@ public class AppInfo {
 			if(usernames.size() == 0)
 				return "(Unspecified players)";
 			
-			return ChatColor.GREEN + implode(ChatColor.GOLD + ", " + ChatColor.GREEN, (String[])(usernames.toArray()));
+			return ChatColor.GREEN + implode(ChatColor.GOLD + ", " + ChatColor.GREEN, usernames.toArray(new String[usernames.size()]));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
