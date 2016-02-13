@@ -23,8 +23,3 @@ commands:
     usage: Usage - /donate
     permission: spinalpack.donate
     permission-message: No!
-  data:
-    description: Retrieve registration data for <player>
-    usage: Usage - /data <player>
-    permission: spinalpack.data
-    permission-message: No!
