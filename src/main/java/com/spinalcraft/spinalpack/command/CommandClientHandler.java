@@ -28,6 +28,7 @@ public class CommandClientHandler implements Runnable{
 				
 				new CommandExecutor(input).runTask(plugin);
 			}
+			socket.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
