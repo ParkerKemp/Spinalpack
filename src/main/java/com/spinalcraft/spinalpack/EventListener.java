@@ -18,6 +18,6 @@ public class EventListener implements Listener {
 			return;
 		event.setCancelled(true);
 		Player player = event.getPlayer();
-		player.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 20 * 10, 4));
+		player.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 20 * 10, 6));
 	}
 }
