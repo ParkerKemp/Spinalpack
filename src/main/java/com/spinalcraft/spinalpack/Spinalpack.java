@@ -82,6 +82,11 @@ public class Spinalpack extends JavaPlugin{
 	    	sender.sendMessage(ChatColor.BLUE + "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DU7SSYS25BSCA");
 	    	return true;
 	    }
+	    if(cmd.getName().equalsIgnoreCase("teamspeak")){
+	    	sender.sendMessage(ChatColor.GREEN + "Spinalcraft has its own dedicated TeamSpeak 3 server!");
+	    	sender.sendMessage(ChatColor.GREEN + "The IP adress of the server is: " + ChatColor.AQUA + "ts.spinalcraft.com");
+	    	return true;
+	    }
 	    
 		return false;
 	}
