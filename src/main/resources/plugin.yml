@@ -23,3 +23,8 @@ commands:
     usage: Usage - /donate
     permission: spinalpack.donate
     permission-message: No!
+  teamspeak:
+    description: Join Spinalcrafts Teamspeak server
+    usage: Usage - /teamspeak
+    permission: spinalpack.teamspeak
+    permission-message: No!

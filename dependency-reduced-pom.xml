@@ -4,7 +4,7 @@
   <groupId>com.spinalcraft</groupId>
   <artifactId>Spinalpack</artifactId>
   <name>Spinalpack</name>
-  <version>1.0</version>
+  <version>1.0.1</version>
   <url>http://github.com/ParkerKemp/Spinalpack</url>
   <build>
     <extensions>
@@ -60,7 +60,7 @@
     <dependency>
       <groupId>org.bukkit</groupId>
       <artifactId>bukkit</artifactId>
-      <version>1.8-R0.1-SNAPSHOT</version>
+      <version>1.9.2-R0.1-SNAPSHOT</version>
       <scope>provided</scope>
       <exclusions>
         <exclusion>
@@ -76,12 +76,28 @@
           <groupId>com.google.guava</groupId>
         </exclusion>
         <exclusion>
+          <artifactId>gson</artifactId>
+          <groupId>com.google.code.gson</groupId>
+        </exclusion>
+        <exclusion>
           <artifactId>ebean</artifactId>
           <groupId>org.avaje</groupId>
         </exclusion>
         <exclusion>
           <artifactId>snakeyaml</artifactId>
           <groupId>org.yaml</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>com.spinalcraft</groupId>
+      <artifactId>UsernameHistory</artifactId>
+      <version>1.1</version>
+      <scope>provided</scope>
+      <exclusions>
+        <exclusion>
+          <artifactId>gson</artifactId>
+          <groupId>com.google.code.gson</groupId>
         </exclusion>
       </exclusions>
     </dependency>
