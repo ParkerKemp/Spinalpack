@@ -84,7 +84,8 @@ public class Spinalpack extends JavaPlugin{
 	    }
 	    if(cmd.getName().equalsIgnoreCase("teamspeak")){
 	    	sender.sendMessage(ChatColor.GREEN + "Spinalcraft has its own dedicated TeamSpeak 3 server!");
-	    	sender.sendMessage(ChatColor.GREEN + "The IP adress of the server is: " + ChatColor.AQUA + "ts.spinalcraft.com");
+	    	sender.sendMessage(ChatColor.GREEN + "Address: " + ChatColor.AQUA + "ts.spinalcraft.com");
+	    	sender.sendMessage(ChatColor.GREEN + "Password: " + ChatColor.AQUA + "spinal");
 	    	return true;
 	    }
 	    
