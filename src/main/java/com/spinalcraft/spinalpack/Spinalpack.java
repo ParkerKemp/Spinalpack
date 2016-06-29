@@ -55,6 +55,10 @@ public class Spinalpack extends JavaPlugin{
 		}
 	}
 	
+	public void broadcastMessage(String message){
+		new BroadcastTask(message).runTask(this);
+	}
+	
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
 		if(cmd.getName().equalsIgnoreCase("rules")){
 			sender.sendMessage("");
