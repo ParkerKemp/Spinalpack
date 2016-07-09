@@ -39,7 +39,7 @@ public class Spinalpack extends JavaPlugin{
 		createDatabase();
 		new Thread(new CommandSocketListener(this)).start();
 		
-		getServer().getPluginManager().registerEvents(new EventListener(),  this);
+		getServer().getPluginManager().registerEvents(new EventListener(Bukkit.getPluginManager().isPluginEnabled("WorldGuard")),  this);
 		
 		//Load CommandExecutor preemptively, so it can still be used after overwriting .jar file
 		Bukkit.getServicesManager().load(com.spinalcraft.spinalpack.command.CommandExecutor.class);

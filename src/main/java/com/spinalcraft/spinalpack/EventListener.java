@@ -10,6 +10,11 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 public class EventListener implements Listener {
+	private boolean worldGuardOn = false;
+	
+	public EventListener(boolean worldGuardOn){
+		this.worldGuardOn = worldGuardOn;
+	}
 
 	@EventHandler(priority = EventPriority.NORMAL)
 	public void onPlayerTeleport(PlayerTeleportEvent event){
