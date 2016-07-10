@@ -21,6 +21,10 @@
 			<id>spinalcraft-repo</id>
 			<url>http://maven.spinalcraft.com</url>
 		</repository>
+		<repository>
+        	<id>sk89q-repo</id>
+        	<url>http://maven.sk89q.com/repo/</url>
+    	</repository>
 	</repositories>
 	<dependencies>
 		<dependency>
@@ -41,6 +45,12 @@
 			<version>1.1</version>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+        	<groupId>com.sk89q</groupId>
+        	<artifactId>worldguard</artifactId>
+        	<version>6.1.1-SNAPSHOT</version>
+        	<scope>provided</scope>
+    	</dependency>
 	</dependencies>
 	<build>
 		<finalName>Spinalpack</finalName>
