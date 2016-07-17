@@ -1,6 +1,7 @@
 name: Spinalpack
 main: com.spinalcraft.spinalpack.Spinalpack
 version: 1.0.1
+softdepend: [WorldGuard]
 
 commands:
   rules:
