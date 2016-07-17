@@ -51,7 +51,9 @@ public class EventListener implements Listener {
 		System.out.println("Enderchest placement and WG fine");
 		ApplicableRegionSet set = regionQuery.getApplicableRegions(event.getBlock().getLocation());
 		if (set == null) return;
-		if (set.queryValue(null, DefaultFlag.BUYABLE)){
+		Boolean regionFlag = set.queryValue(null, DefaultFlag.BUYABLE);
+		if (regionFlag == null) return;
+		if (regionFlag){
 			System.out.println("Region is buyable");
 			event.setCancelled(true);
 			event.getPlayer().sendMessage(ChatColor.RED + "You can't place Ender Chests in this area!");
