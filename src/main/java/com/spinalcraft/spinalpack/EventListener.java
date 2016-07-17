@@ -25,6 +25,7 @@ public class EventListener implements Listener {
 	public EventListener(boolean worldGuardOn){
 		this.worldGuardOn = worldGuardOn;
 		if (worldGuardOn){
+			System.out.println("WG integration on");
 			inst = WorldGuardPlugin.inst();
 			regionQuery = inst.getRegionContainer().createQuery();
 		}
@@ -42,11 +43,15 @@ public class EventListener implements Listener {
 	
 	@EventHandler(priority = EventPriority.NORMAL)
 	public void onPlayerBlockPlace(BlockPlaceEvent event){
-		if (event.getBlock().getType() != Material.ENDER_CHEST || !worldGuardOn){
+		System.out.println("onPlaceBlock " + event.getBlock().getType().toString());
+		System.out.println("worldGuardOn " + worldGuardOn);
+		if ((event.getBlock().getType() != Material.ENDER_CHEST) || !worldGuardOn){
 			return;
 		}
+		System.out.println("Enderchest placement and WG fine");
 		ApplicableRegionSet set = regionQuery.getApplicableRegions(event.getBlock().getLocation());
 		if (set.queryValue(null, DefaultFlag.BUYABLE)){
+			System.out.println("Region is buyable");
 			event.setCancelled(true);
 			event.getPlayer().sendMessage(ChatColor.RED + "You can't place Ender Chests in this area!");
 		}

@@ -41,8 +41,9 @@ public class Spinalpack extends JavaPlugin{
 		
 		getServer().getPluginManager().registerEvents(new EventListener(Bukkit.getPluginManager().isPluginEnabled("WorldGuard")),  this);
 		
-		//Load CommandExecutor preemptively, so it can still be used after overwriting .jar file
+		//Load CommandExecutor and CommandClientHandler preemptively, so it can still be used after overwriting .jar file
 		Bukkit.getServicesManager().load(com.spinalcraft.spinalpack.command.CommandExecutor.class);
+		Bukkit.getServicesManager().load(com.spinalcraft.spinalpack.command.CommandClientHandler.class);
 	}
 	
 	@Override
