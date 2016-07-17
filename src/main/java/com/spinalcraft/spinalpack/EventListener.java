@@ -50,6 +50,7 @@ public class EventListener implements Listener {
 		}
 		System.out.println("Enderchest placement and WG fine");
 		ApplicableRegionSet set = regionQuery.getApplicableRegions(event.getBlock().getLocation());
+		if (set == null) return;
 		if (set.queryValue(null, DefaultFlag.BUYABLE)){
 			System.out.println("Region is buyable");
 			event.setCancelled(true);

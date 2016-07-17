@@ -4,7 +4,7 @@
   <groupId>com.spinalcraft</groupId>
   <artifactId>Spinalpack</artifactId>
   <name>Spinalpack</name>
-  <version>1.0.1</version>
+  <version>1.0.2</version>
   <url>http://github.com/ParkerKemp/Spinalpack</url>
   <build>
     <extensions>
@@ -55,6 +55,10 @@
       <id>spinalcraft-repo</id>
       <url>http://maven.spinalcraft.com</url>
     </repository>
+    <repository>
+      <id>sk89q-repo</id>
+      <url>http://maven.sk89q.com/repo/</url>
+    </repository>
   </repositories>
   <dependencies>
     <dependency>
@@ -98,6 +102,30 @@
         <exclusion>
           <artifactId>gson</artifactId>
           <groupId>com.google.code.gson</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>com.sk89q</groupId>
+      <artifactId>worldguard</artifactId>
+      <version>6.1.1-SNAPSHOT</version>
+      <scope>provided</scope>
+      <exclusions>
+        <exclusion>
+          <artifactId>worldedit</artifactId>
+          <groupId>com.sk89q</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>bukkit-classloader-check</artifactId>
+          <groupId>com.sk89q.spigot</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>commandbook</artifactId>
+          <groupId>com.sk89q</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>jsr305</artifactId>
+          <groupId>com.google.code.findbugs</groupId>
         </exclusion>
       </exclusions>
     </dependency>
