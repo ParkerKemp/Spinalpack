@@ -18,11 +18,10 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.java.JavaPlugin;
 
 import com.spinalcraft.spinalpack.command.CommandSocketListener;
 
-public class Spinalpack extends JavaPlugin{
+public class Spinalpack extends SpinalcraftPlugin{
 	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
 	static final String DB_URL = "jdbc:mysql://localhost";
 	
@@ -67,12 +66,14 @@ public class Spinalpack extends JavaPlugin{
 			sender.sendMessage("");
 			return true;
 		}
+		
 		if(cmd.getName().equalsIgnoreCase("report")){
 			sender.sendMessage("");
 			sender.sendMessage(Spinalpack.code(Co.GREEN) + "Use this link to send a report to the mods: " + Spinalpack.code(Co.BLUE) + "http://www.reddit.com/message/compose?to=%2Fr%2FSpinalCraft");
 			sender.sendMessage("");
 			return true;
 		}
+		
 		if(cmd.getName().equalsIgnoreCase("setdonor")){
 			if(args.length == 0){
 				return false;
@@ -81,12 +82,14 @@ public class Spinalpack extends JavaPlugin{
 			Bukkit.getServer().dispatchCommand(sender, "elevate " + args[0] + " donor");
 			return true;
 		}
+		
 	    if(cmd.getName().equalsIgnoreCase("donate")){
 	    	sender.sendMessage(ChatColor.GREEN + "Donating money helps Spinalcraft keep running! Donate at least $5 and you will get a green name in chat, as well as a third slip sign!");
 	    	sender.sendMessage(ChatColor.GREEN + "Use this link to make a donation via PayPal (remember to add your IGN as a note so we know who you are!):");
 	    	sender.sendMessage(ChatColor.BLUE + "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DU7SSYS25BSCA");
 	    	return true;
 	    }
+	    
 	    if(cmd.getName().equalsIgnoreCase("teamspeak")){
 	    	sender.sendMessage(ChatColor.GREEN + "Spinalcraft has its own dedicated TeamSpeak 3 server!");
 	    	sender.sendMessage(ChatColor.GREEN + "Address: " + ChatColor.AQUA + "ts.spinalcraft.com");
