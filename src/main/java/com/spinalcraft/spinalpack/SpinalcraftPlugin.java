@@ -115,23 +115,23 @@ public abstract class SpinalcraftPlugin extends JavaPlugin {
 		
 		return null;
 	}
-		
+	
 	public static String parseColorTags(String original){
-		return original.replace("#black", Spinalpack.code(Co.BLACK))
-				.replace("#darkblue", Spinalpack.code(Co.DARKBLUE))
-				.replace("#darkgreen", Spinalpack.code(Co.DARKGREEN))
-				.replace("#darkaqua", Spinalpack.code(Co.DARKAQUA))
-				.replace("#darkred", Spinalpack.code(Co.DARKRED))
-				.replace("#darkpurple", Spinalpack.code(Co.DARKPURPLE))
-				.replace("#gold", Spinalpack.code(Co.GOLD))
-				.replace("#gray", Spinalpack.code(Co.GRAY))
-				.replace("#darkgray", Spinalpack.code(Co.DARKGRAY))
-				.replace("#blue", Spinalpack.code(Co.BLUE))
-				.replace("#green", Spinalpack.code(Co.GREEN))
-				.replace("#aqua", Spinalpack.code(Co.AQUA))
-				.replace("#red", Spinalpack.code(Co.RED))
-				.replace("#purple", Spinalpack.code(Co.LIGHTPURPLE))
-				.replace("#yellow", Spinalpack.code(Co.YELLOW))
-				.replace("#white", Spinalpack.code(Co.WHITE));
+		return original.replace("#black", ChatColor.BLACK.toString())
+				.replace("#darkblue", ChatColor.DARK_BLUE.toString())
+				.replace("#darkgreen", ChatColor.DARK_GREEN.toString())
+				.replace("#darkaqua", ChatColor.DARK_AQUA.toString())
+				.replace("#darkred", ChatColor.DARK_RED.toString())
+				.replace("#darkpurple", ChatColor.DARK_PURPLE.toString())
+				.replace("#gold", ChatColor.GOLD.toString())
+				.replace("#gray", ChatColor.GRAY.toString())
+				.replace("#darkgray", ChatColor.DARK_GRAY.toString())
+				.replace("#blue", ChatColor.BLUE.toString())
+				.replace("#green", ChatColor.GREEN.toString())
+				.replace("#aqua", ChatColor.AQUA.toString())
+				.replace("#red", ChatColor.RED.toString())
+				.replace("#purple", ChatColor.LIGHT_PURPLE.toString())
+				.replace("#yellow", ChatColor.YELLOW.toString())
+				.replace("#white", ChatColor.WHITE.toString());
 	}
 }
