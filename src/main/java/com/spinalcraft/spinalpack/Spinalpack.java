@@ -9,6 +9,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 
+import com.spinalcraft.skull.SpinalcraftPlugin;
 import com.spinalcraft.spinalpack.command.CommandSocketListener;
 
 public class Spinalpack extends SpinalcraftPlugin{

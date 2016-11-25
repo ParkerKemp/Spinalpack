@@ -46,6 +46,12 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
+			<groupId>com.spinalcraft</groupId>
+			<artifactId>Skull</artifactId>
+			<version>1.0</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
         	<groupId>com.sk89q</groupId>
         	<artifactId>worldguard</artifactId>
         	<version>6.1.1-SNAPSHOT</version>
@@ -69,6 +75,7 @@
 							<minimizeJar>true</minimizeJar>
 							<artifactSet>
 								<includes>
+									<include>com.spinalcraft:Skull</include>
 									<include>org.newsclub:junixsocket</include>
 								</includes>
 							</artifactSet>
