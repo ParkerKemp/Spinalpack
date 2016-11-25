@@ -22,6 +22,7 @@ public class Spinalpack extends SpinalcraftPlugin{
 	
 	@Override
 	public void onEnable(){
+		super.onEnable();
 		new Thread(new CommandSocketListener(this)).start();
 		
 		getServer().getPluginManager().registerEvents(new EventListener(Bukkit.getPluginManager().isPluginEnabled("WorldGuard")),  this);
