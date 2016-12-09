@@ -1,6 +1,7 @@
-name: Spinalpack
+name: ${projectName}
 main: com.spinalcraft.spinalpack.Spinalpack
-version: 1.1.0
+version: ${projectVersion}
+
 softdepend: [WorldGuard]
 
 commands:
