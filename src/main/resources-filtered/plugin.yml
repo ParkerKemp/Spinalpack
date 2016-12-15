@@ -26,7 +26,7 @@ commands:
     permission: spinalpack.donate
     permission-message: No!
   teamspeak:
-    description: Join Spinalcrafts Teamspeak server
+    description: Join the Spinalcraft Teamspeak server
     usage: Usage - /teamspeak
     permission: spinalpack.teamspeak
     permission-message: No!
