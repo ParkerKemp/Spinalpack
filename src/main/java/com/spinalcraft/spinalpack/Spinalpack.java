@@ -24,19 +24,9 @@ public class Spinalpack extends SpinalcraftPlugin{
 	public void onEnable(){
 		super.onEnable();
 		
-		try {
-			this.getClassLoader().loadClass("org.newsclub.net.unix.AFUNIXServerSocket");
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-		
 		new Thread(new CommandSocketListener(this)).start();
 		
 		getServer().getPluginManager().registerEvents(new EventListener(Bukkit.getPluginManager().isPluginEnabled("WorldGuard")),  this);
-		
-		//Load CommandExecutor and CommandClientHandler preemptively, so it can still be used after overwriting .jar file
-		Bukkit.getServicesManager().load(com.spinalcraft.spinalpack.command.CommandExecutor.class);
-		Bukkit.getServicesManager().load(com.spinalcraft.spinalpack.command.CommandClientHandler.class);
 	}
 	
 	@Override
@@ -47,6 +37,15 @@ public class Spinalpack extends SpinalcraftPlugin{
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@Override
+	protected String[] getPreemptiveClassNames(){
+		return new String[]{
+				"org.newsclub.net.unix.AFUNIXServerSocket",
+				"com.spinalcraft.spinalpack.command.CommandExecutor",
+				"com.spinalcraft.spinalpack.command.CommandClientHandler"
+				};
 	}
 	
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
