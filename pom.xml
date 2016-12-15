@@ -4,14 +4,14 @@
     <modelVersion>4.0.0</modelVersion>
 	<groupId>com.spinalcraft</groupId>
 	<artifactId>Spinalpack</artifactId>
-	<version>${projectVersion}</version>
-	<name>${projectName}</name>
+	<version>1.1.2</version>
+	<name>Spinalpack</name>
 	
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.javadoc.skip>true</maven.javadoc.skip>
 	</properties>
-	<url>http://github.com/ParkerKemp/${projectName}</url>
+	<url>http://github.com/ParkerKemp/${project.name}</url>
 	<repositories>
 		<repository>
 			<id>spigot-repo</id>
@@ -53,7 +53,7 @@
     	</dependency>
 	</dependencies>
 	<build>
-		<finalName>${projectName}</finalName>
+		<finalName>${project.name}</finalName>
 		<resources>
 			<resource>
 				<directory>src/main/resources-filtered</directory>
@@ -77,24 +77,6 @@
 								<includes>
 								</includes>
 							</artifactSet>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>properties-maven-plugin</artifactId>
-				<version>1.0.0</version>
-				<executions>
-					<execution>
-						<phase>initialize</phase>
-						<goals>
-							<goal>read-project-properties</goal>
-						</goals>
-						<configuration>
-							<files>
-								<file>src/main/resources/mvn.properties</file>
-							</files>
 						</configuration>
 					</execution>
 				</executions>
