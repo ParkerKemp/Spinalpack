@@ -23,6 +23,13 @@ public class Spinalpack extends SpinalcraftPlugin{
 	@Override
 	public void onEnable(){
 		super.onEnable();
+		
+		try {
+			this.getClassLoader().loadClass("org.newsclub.net.unix.AFUNIXServerSocket");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		
 		new Thread(new CommandSocketListener(this)).start();
 		
 		getServer().getPluginManager().registerEvents(new EventListener(Bukkit.getPluginManager().isPluginEnabled("WorldGuard")),  this);
