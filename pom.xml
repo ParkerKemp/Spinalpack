@@ -20,6 +20,9 @@
 				<enabled />
 				<updatePolicy>always</updatePolicy>
 			</snapshots>
+			<releases>
+				<enabled />
+			</releases>
 		</repository>
 		<repository>
 			<id>sk89q-repo</id>
