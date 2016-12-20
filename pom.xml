@@ -16,13 +16,6 @@
 		<repository>
 			<id>spinalcraft-repo</id>
 			<url>http://maven.spinalcraft.com</url>
-			<snapshots>
-				<enabled />
-				<updatePolicy>always</updatePolicy>
-			</snapshots>
-			<releases>
-				<enabled />
-			</releases>
 		</repository>
 		<repository>
 			<id>sk89q-repo</id>
